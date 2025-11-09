@@ -382,6 +382,39 @@ section h2 {
     color: var(--text-secondary);
 }
 
+.timeline .job-meta {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0.25rem 0 0.75rem 0;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.experience-hidden {
+    display: none;
+    opacity: 0;
+}
+
+.experience-hidden.visible {
+    display: block;
+    animation: fadeInSlideUp 0.4s ease-out forwards;
+}
+
+.experience-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
 .timeline ul {
     margin: 1rem 0 0;
     padding-left: 1.25rem;

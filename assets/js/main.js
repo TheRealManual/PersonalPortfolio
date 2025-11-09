@@ -20,6 +20,29 @@ if (yearEl) {
     yearEl.textContent = new Date().getFullYear().toString();
 }
 
+// Experience toggle functionality
+const toggleBtn = document.getElementById('toggle-experiences');
+const hiddenExperiences = document.querySelectorAll('.experience-hidden');
+
+if (toggleBtn && hiddenExperiences.length) {
+    let isExpanded = false;
+
+    toggleBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        hiddenExperiences.forEach((exp) => {
+            exp.classList.toggle('visible', isExpanded);
+        });
+        toggleBtn.textContent = isExpanded ? 'Show Less Experiences' : 'Show More Experiences';
+
+        // Scroll to button smoothly when collapsing
+        if (!isExpanded) {
+            setTimeout(() => {
+                toggleBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 200);
+        }
+    });
+}
+
 const repoGrid = document.getElementById('repo-grid');
 
 if (repoGrid) {
