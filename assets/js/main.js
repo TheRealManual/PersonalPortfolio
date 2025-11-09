@@ -17,7 +17,7 @@ if (navToggle && navigation) {
 }
 
 if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+    yearEl.textContent = new Date().getFullYear().toString();
 }
 
 const repoGrid = document.getElementById('repo-grid');
@@ -30,7 +30,12 @@ if (repoGrid) {
         .filter(Boolean);
 
     if (username) {
-        fetchRepos(username, featuredRepos);
+        // Defer repo fetching to avoid blocking initial render
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => fetchRepos(username, featuredRepos));
+        } else {
+            setTimeout(() => fetchRepos(username, featuredRepos), 0);
+        }
     } else {
         renderFallback();
     }
@@ -67,12 +72,13 @@ async function fetchRepos(username, featuredRepos) {
 function renderRepos(repos) {
     if (!repoGrid) return;
 
-    repoGrid.innerHTML = '';
-
     if (!repos.length) {
         renderFallback();
         return;
     }
+
+    // Use DocumentFragment to batch DOM updates
+    const fragment = document.createDocumentFragment();
 
     repos.forEach((repo) => {
         const card = document.createElement('article');
@@ -86,14 +92,15 @@ function renderRepos(repos) {
             </div>
             <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Explore repository</a>
         `;
-        repoGrid.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    repoGrid.innerHTML = '';
+    repoGrid.appendChild(fragment);
 }
 
 function renderFallback() {
     if (!repoGrid) return;
-
-    repoGrid.innerHTML = '';
 
     const projects = [
         {
@@ -119,6 +126,9 @@ function renderFallback() {
         },
     ];
 
+    // Use DocumentFragment to batch DOM updates
+    const fragment = document.createDocumentFragment();
+
     projects.forEach((project) => {
         const card = document.createElement('article');
         card.className = 'project-card';
@@ -131,6 +141,9 @@ function renderFallback() {
             </div>
             <a href="${project.link}">${project.cta}</a>
         `;
-        repoGrid.appendChild(card);
+        fragment.appendChild(card);
     });
+
+    repoGrid.innerHTML = '';
+    repoGrid.appendChild(fragment);
 }

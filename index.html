@@ -8,9 +8,16 @@
         name="description"
         content="Portfolio of Nicholas Korcynski, a Rowan University computer science major focused on software engineering, artificial intelligence, and real-time web systems."
     />
+    <meta property="og:title" content="Nicholas Korcynski | Software Engineering & AI Portfolio" />
+    <meta property="og:description" content="Computer Science major graduating Spring 2026. Returning SWE Intern at The Home Depot with focus on React, AI/ML, and real-time systems." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://yourportfolio.com" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="prefetch" href="https://api.github.com/users/nicholaskorcynski/repos?per_page=100" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
@@ -37,29 +44,35 @@
         <section class="hero" id="top">
             <div class="container hero-content">
                 <div class="hero-text">
-                    <p class="eyebrow">Computer Science @ Rowan University · Glassboro, NJ</p>
-                    <h1>Hi, I'm Nicholas Korcynski — I build human-centered software backed by reliable AI.</h1>
+                    <div class="eyebrow-row">
+                        <p class="eyebrow">Bachelor's in Computer Science @ <span class="rowan">Rowan University</span></p>
+                        <span class="eyebrow-divider"></span>
+                        <p class="eyebrow">Incoming Software Engineer @ <span class="home-depot">The Home Depot</span></p>
+                    </div>
+                    <h1>Hi, I'm Nicholas Korcynski</h1>
+                    <h2 class="hero-subtitle">I build human-centered software backed by reliable AI.</h2>
                     <p class="lead">
-                        I'm a CS major graduating Spring 2026 with a focus on software engineering, artificial intelligence, and machine learning. I recently completed a front-end engineering internship at The Home Depot and will return as a Software Engineer I after graduation.
+                        I'm a CS major graduating Spring 2026 with a focus on software engineering, artificial intelligence, and machine learning. I recently completed a software engineering internship at The Home Depot and will return as a Software Engineer I after graduation.
                     </p>
                     <ul class="hero-highlights">
-                        <li>Returning to The Home Depot in Summer 2025 after delivering production React features in 2024.</li>
-                        <li>Designing real-time multiplayer experiences and AI-first applications across my project portfolio.</li>
+                        <li>Returning to The Home Depot in Spring 2026 after delivering production React, GraphQL, JS features in 2023-24.</li>
+                        <li>Working on AI-driven tools that simplify life — from movie recommendations to whiteboard scanning.</li>
                         <li>Actively collaborating with teams that value performance, accessibility, and measurable outcomes.</li>
                     </ul>
                     <div class="hero-actions">
                         <a class="button primary" href="#resume">View Resume</a>
-                        <a class="button secondary" href="https://github.com/nicholaskorcynski" target="_blank" rel="noopener noreferrer">View GitHub</a>
+                        <a class="button secondary" href="#projects">View Projects</a>
+                        <a class="button tertiary" href="https://github.com/TheRealManual" target="_blank" rel="noopener noreferrer">View GitHub Profile</a>
                     </div>
                 </div>
                 <div class="hero-panel" role="presentation">
                     <div class="panel-card">
                         <h2>Currently</h2>
-                        <p>Preparing for my returning internship and scaling passion projects that blend AI and multiplayer systems.</p>
+                        <p>Preparing for my incoming Software Engineering position at The Home Depot and scaling passion projects that blend AI, ML, and multiplayer systems.</p>
                         <ul>
-                            <li>Iterating on CoolBeerGames live presence platform</li>
+                            <li>Iterating on personal projects and connection to ML and AI</li>
                             <li>Prototyping SceneIt recommendation workflows with Gemini API</li>
-                            <li>Pursuing advanced CS electives in machine learning and distributed systems</li>
+                            <li>Pursuing advanced CS Certifications in Machine Learning, Artificial Intelligence, Distributed Systems, and Software Engineering</li>
                         </ul>
                     </div>
                 </div>
@@ -72,13 +85,13 @@
                 <div class="grid">
                     <div>
                         <p>
-                            I thrive on delivering polished user experiences that are grounded in solid engineering. At Rowan University, I split my time between coursework, mentoring peers, and shipping projects that translate classroom theory into production-ready systems.
+                            I thrive on delivering polished user experiences that are grounded in solid engineering. At Rowan University, I split my time between coursework, gaining Certifications in ML and AI, and shipping projects that translate classroom theory into production-ready systems.
                         </p>
                         <p>
-                            My internship on The Home Depot's core web team sharpened my React, TypeScript, and API integration skills while reinforcing the value of collaboration across design, product, and operations stakeholders.
+                            My internship on The Home Depot's core web team sharpened my React, Agile, and API integration skills while reinforcing the value of collaboration across design, product, and operations stakeholders.
                         </p>
                         <p>
-                            Outside of classes you will find me refining multiplayer infrastructure, exploring AI-assisted UX flows, and helping classmates prepare for technical interviews and hackathons.
+                            Outside of classes you will find me refining my skills, exploring AI-assisted UX flows, and creating new applications that allow me to expand upon my knowledge and experience.
                         </p>
                     </div>
                     <div class="facts">
@@ -88,7 +101,8 @@
                         </div>
                         <div class="fact">
                             <span class="label">Graduation</span>
-                            <span class="value">Spring 2026</span>
+                            <span class="value">Bachelors in CS, Spring 2026</span>
+                            <span class="value">Starting Masters in AI</span>
                         </div>
                         <div class="fact">
                             <span class="label">Focus Areas</span>
@@ -193,7 +207,7 @@
                     <article>
                         <header>
                             <h3>Rowan University</h3>
-                            <span>B.S. Computer Science · Class of 2026</span>
+                            <span>Bachelor's in Computer Science · Class of 2026</span>
                         </header>
                         <p>
                             Concentration in Software Engineering with electives in Artificial Intelligence and Machine Learning. Highlights include Data Structures, Operating Systems, Machine Learning, and Advanced Software Engineering.
@@ -298,6 +312,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js" type="module"></script>
+    <script src="assets/js/main.js" type="module" defer></script>
 </body>
 </html>
