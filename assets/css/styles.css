@@ -246,6 +246,7 @@ a:focus {
 .hero-panel {
     display: flex;
     justify-content: center;
+    transform: translateY(-6rem); /* move the panel up a bit */
 }
 
 .panel-card {
@@ -255,6 +256,7 @@ a:focus {
     padding: 2rem;
     width: min(360px, 100%);
     box-shadow: 0 30px 80px rgba(15, 23, 42, 0.45);
+    position: relative; /* for absolute positioning of badge */
 }
 
 .panel-card h2 {
@@ -269,6 +271,45 @@ a:focus {
     display: grid;
     gap: 0.75rem;
     color: var(--text-secondary);
+}
+
+/* LinkedIn badge placement below the panel card (hero sidebar) */
+.hero-panel .linkedin-badge {
+    position: absolute;
+    top: 100%; /* position below the card */
+    left: 0;
+    right: 0;
+    margin-top: 0.75rem; /* small gap under the card */
+    display: flex;
+    justify-content: center; /* center the badge */
+    min-height: 280.94px; /* placeholder height to prevent layout shift */
+    overflow: hidden; /* disable scrollbars */
+}
+
+/* Placeholder/skeleton while badge loads */
+.hero-panel .linkedin-badge::before {
+    content: '';
+    position: absolute;
+    width: 328px;
+    height: 280.94px;
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 8px;
+    z-index: -1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="48" height="48"><path fill="%2394a3b8" d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,0 64,0 L8,0 C3.581722,0 0,3.581722 0,8 L0,64 C0,68.418278 3.581722,72 8,72 Z M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261083 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 48px 48px;
+}
+
+/* Disable scrollbars on the badge iframe and containers */
+.hero-panel .linkedin-badge * {
+    overflow: hidden !important;
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE/Edge */
+}
+
+.hero-panel .linkedin-badge *::-webkit-scrollbar {
+    display: none !important; /* Chrome/Safari/Opera */
 }
 
 section {
