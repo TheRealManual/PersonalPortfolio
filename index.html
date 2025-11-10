@@ -31,6 +31,7 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#achievements">Achievements</a></li>
                     <li><a href="#resume">Resume</a></li>
@@ -224,12 +225,127 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Featured Projects</h2>
-                    <p class="section-subtitle">Selected work spanning real-time systems, AI-driven experiences, and developer tooling.</p>
                 </div>
-                <div class="project-grid" id="repo-grid" data-github-user="nicholaskorcynski" data-featured-repos="coolbeergames,sceneit,study-hub" aria-live="polite">
-                    <div class="project-card skeleton" aria-hidden="true"></div>
-                    <div class="project-card skeleton" aria-hidden="true"></div>
-                    <div class="project-card skeleton" aria-hidden="true"></div>
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('assets/project-Images/StudyHub.png');"></div>
+                        <div class="project-content">
+                            <h3>Study Hub</h3>
+                            <p>Static study platform that transforms JSON files into interactive learning experiences with notes, flashcards, quizzes, games, and integrated PDF viewing—no backend required.</p>
+                            <div class="project-tech">
+                                <span>HTML/CSS/JS</span>
+                                <span>Static Site</span>
+                                <span>AWS Amplify</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://collegestudyhub.com" target="_blank" rel="noopener noreferrer" class="button primary">View Live Site →</a>
+                                <a href="https://github.com/TheRealManual/Study-Hub" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('assets/project-Images/SceneIt.png');"></div>
+                        <div class="project-content">
+                            <h3>SceneIt</h3>
+                            <p>Full-stack movie discovery platform with swipe-based interface, Google OAuth authentication, and AI-powered recommendations using Gemini API for personalized film suggestions.</p>
+                            <div class="project-tech">
+                                <span>React</span>
+                                <span>TypeScript</span>
+                                <span>Node.js</span>
+                                <span>Gemini API</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://main.d1ur5bc2o4pggx.amplifyapp.com/" target="_blank" rel="noopener noreferrer" class="button primary">View Live Site →</a>
+                                <a href="https://github.com/TheRealManual/SceneIt" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('assets/project-Images/OneNoteWhiteboardScanner.png');"></div>
+                        <div class="project-content">
+                            <h3>OneNote Whiteboard Scanner</h3>
+                            <p>Windows desktop application using computer vision and AI to digitize whiteboard content, outputting clean vector graphics with direct OneNote integration via Microsoft Graph API.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>React</span>
+                                <span>Electron</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/TheRealManual/OneNote-Whiteboard-Scanner" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="certifications" id="certifications">
+            <div class="container">
+                <h2>Professional Certifications</h2>
+                <div class="certifications-grid">
+                    <article class="certification-card">
+                        <div class="certification-badge">
+                            <img src="assets/certifications/IBM-LOGO.png" alt="IBM AI Engineering Certification">
+                        </div>
+                        <div class="certification-content">
+                            <h3>IBM AI Engineering Specialization</h3>
+                            <span class="cert-issuer">Coursera • IBM</span>
+                            <p>
+                                Comprehensive AI engineering program covering machine learning, deep learning, and generative AI applications. Projects include sentiment analysis with Flask, image captioning with generative AI, ChatGPT-like applications with open source LLMs, voice assistants with GPT APIs and Watson, AI meeting companion with Llama, and "Babel Fish" universal language translator with Flan and Gradio.
+                            </p>
+                            <div class="cert-topics">
+                                <span>Python & PyTorch</span>
+                                <span>TensorFlow</span>
+                                <span>Generative AI</span>
+                                <span>LLMs</span>
+                                <span>Flask</span>
+                            </div>
+                            <a href="https://www.coursera.org/account/accomplishments/specialization/LLWMLIBHVO55" target="_blank" rel="noopener noreferrer" class="button secondary">View Credential →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="certification-card">
+                        <div class="certification-badge">
+                            <img src="assets/certifications/microsoft-certified-associate-badge.svg" alt="Microsoft Azure AI Engineer Associate">
+                        </div>
+                        <div class="certification-content">
+                            <h3>Microsoft Azure AI Engineer Associate</h3>
+                            <span class="cert-issuer">Microsoft</span>
+                            <p>
+                                Expertise in planning and managing Azure AI solutions, implementing generative AI and agentic solutions, computer vision, natural language processing, and knowledge mining. Demonstrated ability to design and deploy enterprise-scale AI applications using Azure's cognitive services and machine learning capabilities.
+                            </p>
+                            <div class="cert-topics">
+                                <span>Generative AI</span>
+                                <span>Computer Vision</span>
+                                <span>NLP</span>
+                                <span>Knowledge Mining</span>
+                                <span>Azure AI</span>
+                            </div>
+                            <a href="https://learn.microsoft.com/api/credentials/share/en-us/NicholasKorcynski-7904/F2CF553D4755C8C6?sharingId" target="_blank" rel="noopener noreferrer" class="button secondary">View Credential →</a>
+                        </div>
+                    </article>
+                    
+                    <article class="certification-card">
+                        <div class="certification-badge">
+                            <img src="assets/certifications/NVDA-AI-Infrastructure-and-Operations-LOGO.png" alt="NVIDIA AI Infrastructure and Operations">
+                        </div>
+                        <div class="certification-content">
+                            <h3>NVIDIA AI Infrastructure &amp; Operations</h3>
+                            <span class="cert-issuer">NVIDIA</span>
+                            <p>
+                                Specialized knowledge in accelerated computing use cases, AI/ML/deep learning fundamentals, GPU architecture, and NVIDIA's software suite. Covers infrastructure and operational considerations for adopting and managing enterprise NVIDIA AI solutions with focus on GPU-accelerated computing environments.
+                            </p>
+                            <div class="cert-topics">
+                                <span>GPU Architecture</span>
+                                <span>Accelerated Computing</span>
+                                <span>AI Infrastructure</span>
+                                <span>Deep Learning</span>
+                                <span>NVIDIA Software</span>
+                            </div>
+                            <a href="https://www.credly.com/earner/earned/badge/58f2e82f-ac0c-4ff3-9ca6-1f6f58c73c47" target="_blank" rel="noopener noreferrer" class="button secondary">View Credential →</a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -240,11 +356,20 @@
                 <div class="education-grid">
                     <article>
                         <header>
-                            <h3>Rowan University</h3>
-                            <span>Bachelor's in Computer Science · Class of 2026</span>
+                            <h3>Master's in Artificial Intelligence / Machine Learning</h3>
+                            <span>Expected Start Fall 2026</span>
                         </header>
                         <p>
-                            Concentration in Software Engineering with electives in Artificial Intelligence and Machine Learning. Highlights include Data Structures, Operating Systems, Machine Learning, and Advanced Software Engineering.
+                            Pursuing graduate studies in AI/ML with focus on deep learning, natural language processing, and computer vision applications.
+                        </p>
+                    </article>
+                    <article>
+                        <header>
+                            <h3>Rowan University</h3>
+                            <span>Bachelor of Science in Computer Science · Expected May 2026</span>
+                        </header>
+                        <p>
+                            College of Science & Mathematics · Currently enrolled in Software Engineering, Algorithms, Information Visualization, and Cyber Security. Completed coursework in Data Structures, Object-Oriented Programming, Calculus I/II, Linear Algebra, and Discrete Mathematics.
                         </p>
                     </article>
                     <article>
@@ -253,19 +378,8 @@
                             <span>Class of 2023</span>
                         </header>
                         <p>
-                            STEM-focused curriculum with AP Computer Science, Calculus BC, and honors mathematics courses that laid the foundation for university-level computing work.
+                            STEM-focused curriculum with Dual Enrollment Data Structures with FDU, AP Computer Science, Honors Calculus, etc.
                         </p>
-                    </article>
-                    <article>
-                        <header>
-                            <h3>Professional Certifications</h3>
-                            <span>Ongoing specialization</span>
-                        </header>
-                        <ul>
-                            <li>IBM AI Engineering with Python &amp; PyTorch (TensorFlow)</li>
-                            <li>Microsoft Azure AI Engineer Associate</li>
-                            <li>NVIDIA AI Infrastructure &amp; Operations</li>
-                        </ul>
                     </article>
                 </div>
             </div>
@@ -278,15 +392,15 @@
                     <article>
                         <h3>Career Milestones</h3>
                         <ul>
-                            <li>Secured returning Software Engineer Intern offer for Summer 2025 at The Home Depot.</li>
-                            <li>Accepted full-time Software Engineer I offer starting Summer 2026.</li>
+                            <li>Accepted full-time Software Engineer I offer starting Spring 2026.</li>
                             <li>Earned LinkedIn recommendation from internship manager for exceptional collaboration.</li>
+                            <li>Graduating a year early with my Bachelor of Science in Computer Science.</li>
                         </ul>
                     </article>
                     <article>
                         <h3>Project Impact</h3>
                         <ul>
-                            <li>Scaled CoolBeerGames to support real-time friend presence and cross-game invites.</li>
+                            <li>Built OneNote Whiteboard Scanner using OpenCV and Microsoft Graph API to digitize whiteboards into clean vector graphics.</li>
                             <li>Built SceneIt to combine Gemini-powered recommendations with interactive filtering controls.</li>
                             <li>Developed Study-Hub to auto-generate notes, flashcards, and quizzes from structured JSON.</li>
                         </ul>
@@ -295,8 +409,8 @@
                         <h3>Operations &amp; Leadership</h3>
                         <ul>
                             <li>Known for task management, workload prioritization, and clear communication under pressure.</li>
-                            <li>Mentors peers on internship preparation, resume refinement, and technical interviews.</li>
                             <li>Applies UX research insights to elevate every build, from prototypes to production features.</li>
+                            <li>Balance technical depth with user-centered design to deliver accessible, performant solutions.</li>
                         </ul>
                     </article>
                 </div>
@@ -330,10 +444,10 @@
             <div class="container">
                 <h2>Contact</h2>
                 <p>
-                    I'm always excited to talk about software engineering, AI, and opportunities to deliver meaningful user experiences. Reach out and let's collaborate.
+                    I'm always excited to talk about software engineering, AI, ML, and opportunities to deliver meaningful user experiences. Reach out and let's collaborate.
                 </p>
                 <div class="contact-links">
-                    <a class="button secondary" href="mailto:nicholas.td@gmail.com">nicholas.td@gmail.com</a>
+                    <a class="button secondary" href="mailto:thelostamount@gmail.com">thelostamount@gmail.com</a>
                     <a class="button secondary" href="https://www.linkedin.com/in/nicholas-korcynski" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </div>
             </div>
@@ -342,7 +456,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; <span id="year"></span> Nicholas Korcynski. Designed for clarity, speed, and trust.</p>
+            <p>&copy; <span id="year"></span> Nicholas Korcynski.</p>
         </div>
     </footer>
 

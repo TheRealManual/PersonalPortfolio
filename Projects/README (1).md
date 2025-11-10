@@ -1,0 +1,690 @@
+# SceneIt
+
+A movie recommendation web application built for a software engineering class project. The application uses a swipe-based interface to help users discover movies based on their preferences, similar to dating apps but for films.
+
+## Architecture Overview
+
+This is a full-stack application with a decoupled frontend and backend architecture designed for deployment on AWS infrastructure. The frontend is hosted on AWS Amplify while the backend runs on AWS App Runner, allowing independent scaling and deployment of each component.
+
+### Frontend Repository
+- **Location**: This repository
+- **Hosting**: AWS Amplify
+- **Purpose**: Client-side React application
+
+### Backend Repository
+- **Location**: Separate repository (SceneItBackend)
+- **Hosting**: AWS App Runner
+- **Purpose**: REST API server and business logic
+
+## Technology Stack
+
+### Frontend Technologies
+
+**Core Framework**
+- React 18.2.0 - Component-based UI library
+- TypeScript 5.2.2 - Type-safe JavaScript superset
+- Vite 5.2.0 - Build tool and development server
+
+**Build Tools**
+- ESLint - Code linting and quality enforcement
+- TypeScript Compiler (tsc) - Type checking and compilation
+
+**Development Server**
+- Port: 5173 (development)
+- Hot module replacement enabled through Vite
+
+### Backend Technologies
+
+**Runtime & Framework**
+- Node.js 20
+- Express - REST API framework
+- CORS - Cross-origin resource sharing middleware
+
+**Authentication**
+- Google OAuth 2.0 integration
+- Cookie-based session management
+- Development mode bypass authentication
+
+**Deployment**
+- AWS App Runner for container hosting
+- Port: 5000 (configurable via environment)
+
+## Application Features
+
+### User Authentication
+The application supports two authentication modes:
+
+**Production Mode**
+- Google OAuth 2.0 authentication flow
+- Users log in with their Google account
+- Session persistence via HTTP-only cookies
+- Automatic redirect to Google consent screen
+
+**Development Mode**
+- Bypass authentication endpoint at `/auth/dev-login`
+- Automatic mock user creation for testing
+- No OAuth credentials required during development
+
+### Movie Discovery System
+
+**Preference Configuration**
+Users configure their movie preferences through a multi-parameter form:
+- Description field for natural language input
+- Release year range (1950-2025)
+- Runtime range (60-180 minutes)
+- IMDb rating range (1-10)
+- Age rating filter
+- Mood intensity slider (1-10 scale)
+- Humor level slider
+- Violence level slider
+- Romance level slider
+- Complexity level slider
+- Genre preferences with individual weights (Action, Comedy, Drama, Horror, Romance, Thriller, Sci-Fi, Fantasy, Animation, Documentary)
+- Language selection
+
+**Search Modes**
+The application provides two discovery methods:
+
+1. **Preference-Based Search**
+   - Endpoint: `POST /api/movies/search`
+   - Uses configured preferences to query movie database
+   - Returns curated results matching user criteria
+   
+2. **Random Discovery**
+   - Endpoint: `GET /api/movies/random?count=10`
+   - Fetches random movies from database
+   - Fallback when preference search returns no results
+
+### Swipe Interface
+
+**Interaction Model**
+- Card-based UI showing one movie at a time
+- Swipe right or click checkmark to like
+- Swipe left or click X to dislike
+- Touch and mouse support for desktop and mobile
+- Visual feedback during drag gestures
+- Automatic progression through movie stack
+
+**Movie Card Display**
+Each card shows:
+- Movie poster image
+- Title
+- Overview/synopsis
+- Release year
+- Genres
+- IMDb rating
+- Runtime
+
+### User Profile System
+
+**Profile Data**
+- Display name from Google account
+- Email address
+- Profile photo
+- Saved preferences
+- Statistics (liked/disliked movie counts)
+- Last active timestamp
+
+**Data Persistence**
+User interactions are stored server-side and include:
+- Liked movies with timestamp
+- Disliked movies with timestamp
+- Favorite movies collection
+- Preference configurations
+
+### Session Management
+
+**Dual-Layer Like/Dislike Tracking**
+
+The application maintains two separate collections:
+
+1. **Session Likes/Dislikes**
+   - Temporary storage for current swipe session
+   - Cleared when user starts new search
+   - Used for "Review Session" summary view
+   - Not tied to user account
+
+2. **Persistent Likes/Dislikes**
+   - Stored in backend database
+   - Associated with user account
+   - Viewable through profile pages
+   - Persists across sessions
+
+**View States**
+The application cycles through these states:
+- `preferences` - Initial configuration screen
+- `loading` - Fetching movies from API
+- `results` - Active swiping interface
+- `liked-summary` - Session results summary
+- `liked-movies-page` - Persistent liked movies view
+- `disliked-movies-page` - Persistent disliked movies view
+
+## API Integration
+
+### Authentication Endpoints
+
+```
+GET  /auth/me           - Fetch current authenticated user
+POST /auth/logout       - Terminate user session
+GET  /auth/google       - Initiate Google OAuth flow (production)
+GET  /auth/dev-login    - Development authentication bypass
+```
+
+### Movie Endpoints
+
+```
+POST /api/movies/search        - Search movies by preferences
+GET  /api/movies/random        - Get random movies
+```
+
+### User Data Endpoints
+
+```
+GET  /api/user/profile                - Get user profile with stats
+PUT  /api/user/preferences            - Update user preferences
+POST /api/user/movies/like            - Record movie like
+POST /api/user/movies/dislike         - Record movie dislike
+GET  /api/user/movies/favorites       - Get user's favorite movies
+POST /api/user/movies/favorites       - Add movie to favorites
+DELETE /api/user/movies/favorites/:id - Remove from favorites
+GET  /api/user/movies/liked           - Get all liked movies
+GET  /api/user/movies/disliked        - Get all disliked movies
+```
+
+### Status Endpoint
+
+```
+GET /api/status  - Health check with environment info
+```
+
+## Environment Configuration
+
+### Development Environment
+
+**Frontend (.env.development)**
+```
+VITE_API_URL=http://localhost:3000
+```
+
+**Backend**
+```
+NODE_ENV=development
+PORT=5000
+```
+
+### Production Environment
+
+**Frontend (.env.production)**
+```
+VITE_API_URL=https://your-app-runner-url.awsapprunner.com
+```
+
+**Backend**
+```
+NODE_ENV=production
+PORT=5000
+```
+
+## Component Architecture
+
+### Main Components
+
+**App.tsx**
+- Root component managing application state
+- Handles authentication flow
+- Coordinates view transitions
+- Manages movie data and user preferences
+- 1368 lines - primary application logic
+
+**Header.tsx**
+- Top navigation bar
+- Login/logout controls
+- Profile dropdown access
+- Connection status indicator
+
+**MovieSwiper.tsx**
+- Card-based swipe interface
+- Touch and mouse event handlers
+- Drag gesture detection and animation
+- Like/dislike action triggers
+
+**ProfileModal.tsx**
+- User profile display
+- Statistics dashboard
+- Navigation to liked/disliked views
+- Logout functionality
+
+**LikedMoviesView.tsx**
+- Grid display of liked movies
+- Favorite toggle functionality
+- Movie poster gallery
+
+**DislikedMoviesView.tsx**
+- Grid display of disliked movies
+- Similar layout to liked view
+
+**LoadingScreen.tsx**
+- Loading state UI
+- Shown during API requests
+
+**AuthPromptModal.tsx**
+- Login prompt for unauthenticated users
+- Appears when user attempts actions requiring auth
+
+**ProfileDropdown.tsx**
+- Dropdown menu from header
+- Quick access to profile and logout
+
+**LoginButton.tsx**
+- Google login trigger button
+- Styled call-to-action
+
+### Service Layer
+
+**auth.service.ts**
+- Handles authentication API calls
+- Manages login/logout requests
+- Current user session retrieval
+- Environment-aware OAuth routing
+
+**user.service.ts**
+- User profile operations
+- Preference updates
+- Movie like/dislike/favorite operations
+- Data fetching and synchronization
+
+### Type Definitions
+
+**user.ts**
+- User interface definition
+- Profile data structure
+- Type safety for user objects
+
+**vite-env.d.ts**
+- Vite environment variable types
+- TypeScript declarations for import.meta.env
+- Defines VITE_API_URL type
+
+## Build Process
+
+### Development Build
+
+```bash
+npm run dev
+```
+
+This command:
+1. Starts Vite development server on port 5173
+2. Enables hot module replacement
+3. Uses development environment variables
+4. Serves application at http://localhost:5173
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Build process:
+1. TypeScript compilation (`tsc`)
+2. Vite production build
+3. Output directory: `dist/`
+4. Optimized and minified assets
+5. Source maps generated
+6. Bundle splitting for code optimization
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+Serves the production build locally for testing before deployment.
+
+## Deployment Configuration
+
+### AWS Amplify (Frontend)
+
+**Build Specification (amplify.yml)**
+
+```yaml
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+```
+
+**Required Environment Variables**
+- `VITE_API_URL` - Backend API endpoint URL
+
+**Build Settings**
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Node version: 18+
+
+### AWS App Runner (Backend)
+
+**Configuration (apprunner.yaml)**
+
+```yaml
+version: 1.0
+runtime: nodejs20
+build:
+  commands:
+    build:
+      - echo "Installing dependencies..."
+      - npm ci
+run:
+  runtime-version: 20
+  command: npm start
+  network:
+    port: 5000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production
+```
+
+**Runtime**
+- Node.js 20
+- Express server
+- Port 5000 (configurable)
+
+## State Management
+
+The application uses React hooks for state management without external libraries:
+
+**Global State (in App.tsx)**
+- `user` - Current authenticated user
+- `showProfileModal` - Profile modal visibility
+- `showAuthPrompt` - Auth prompt modal visibility
+- `preferencesLoaded` - Whether user preferences loaded from backend
+- `currentView` - Active view state
+- `movies` - Current movie search results
+- `likedMovies` - All-time liked movies
+- `dislikedMovies` - All-time disliked movies
+- `favoriteMovies` - User's favorite movies
+- `favoriteMovieIds` - Set of favorite IDs for quick lookup
+- `sessionLikedMovies` - Movies liked in current session
+- `sessionDislikedMovies` - Movies disliked in current session
+- `backendStatus` - API connection status
+- `preferences` - Movie preference configuration
+
+**State Initialization**
+On application mount:
+1. Check backend connection
+2. Attempt to load authenticated user
+3. If user exists, fetch profile and preferences
+4. Map backend preferences to frontend format
+5. Initialize view based on auth status
+
+## Data Flow
+
+### Typical User Journey
+
+1. **Initial Load**
+   - App checks backend connection
+   - Attempts to restore user session
+   - Loads saved preferences if authenticated
+   - Displays preference configuration screen
+
+2. **Authentication (if needed)**
+   - User clicks login button
+   - Redirects to Google OAuth (or dev endpoint)
+   - OAuth callback returns to frontend with session cookie
+   - User object populated from /auth/me endpoint
+
+3. **Configure Preferences**
+   - User adjusts sliders and inputs
+   - Preferences stored in component state
+   - Not persisted until user initiates search
+
+4. **Search Movies**
+   - Preferences sent to POST /api/movies/search
+   - Backend queries movie database
+   - Returns array of matching movies
+   - Falls back to random movies if no results
+   - Transitions to swipe view
+
+5. **Swipe Interaction**
+   - User swipes or clicks on movie cards
+   - Like action:
+     - Adds to sessionLikedMovies
+     - If authenticated, sends POST to /api/user/movies/like
+     - Adds to persistent likedMovies
+   - Dislike action:
+     - Adds to sessionDislikedMovies
+     - If authenticated, sends POST to /api/user/movies/dislike
+     - Adds to persistent dislikedMovies
+   - Progresses to next movie
+
+6. **Session Summary**
+   - After all movies swiped
+   - Displays sessionLikedMovies count
+   - Options to start new search or view profile
+
+7. **Profile Management**
+   - View all-time liked/disliked movies
+   - Toggle favorites on liked movies
+   - Access statistics
+   - Update preferences
+
+## CORS Configuration
+
+The backend must configure CORS to accept requests from the frontend domain:
+
+**Development**
+```javascript
+origin: ['http://localhost:5173', 'http://127.0.0.1:5173']
+```
+
+**Production**
+```javascript
+origin: ['https://your-amplify-domain.amplifyapp.com']
+```
+
+Credentials must be enabled for cookie-based authentication to work across origins.
+
+## Error Handling
+
+### Frontend Error States
+
+**Backend Disconnection**
+- Status indicator in header shows red
+- Attempts reconnection every 30 seconds
+- User can manually trigger connection check
+
+**Authentication Failures**
+- AuthPromptModal appears when unauthenticated user attempts protected action
+- Failed login redirects back to home
+
+**API Request Failures**
+- Like/dislike actions fail gracefully
+- User sees local state update even if backend fails
+- Console logs error details for debugging
+
+**Empty Search Results**
+- Automatically falls back to random movie endpoint
+- If random also fails, shows "No movies found" message
+
+### Backend Error Responses
+
+Standard error format:
+```json
+{
+  "error": "Error type",
+  "message": "Detailed error message"
+}
+```
+
+## Local Development Setup
+
+### Prerequisites
+- Node.js 18 or higher
+- npm or yarn package manager
+- Backend server running (SceneItBackend repository)
+
+### Installation
+
+1. Clone repository
+```bash
+git clone https://github.com/TheRealManual/SceneIt.git
+cd SceneIt
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Configure environment
+```bash
+cp .env.example .env.development
+```
+
+Edit `.env.development` to point to local backend:
+```
+VITE_API_URL=http://localhost:5000
+```
+
+4. Start development server
+```bash
+npm run dev
+```
+
+Application will be available at http://localhost:5173
+
+### Running Backend Locally
+
+The backend must be running for full functionality. Refer to SceneItBackend repository for setup instructions. At minimum, the backend should be running on port 5000 with these endpoints operational:
+- /api/status
+- /auth/dev-login
+- /api/movies/search
+- /api/movies/random
+
+## Project Structure
+
+```
+SceneIt/
+├── src/
+│   ├── components/          # React components
+│   │   ├── AuthPromptModal.tsx
+│   │   ├── DislikedMoviesView.tsx
+│   │   ├── Header.tsx
+│   │   ├── LikedMoviesView.tsx
+│   │   ├── LoadingScreen.tsx
+│   │   ├── LoginButton.tsx
+│   │   ├── MovieSwiper.tsx
+│   │   ├── ProfileDropdown.tsx
+│   │   └── ProfileModal.tsx
+│   ├── services/            # API service layer
+│   │   ├── auth.service.ts
+│   │   └── user.service.ts
+│   ├── types/               # TypeScript type definitions
+│   │   └── user.ts
+│   ├── App.tsx             # Root component
+│   ├── App.css             # Root styles
+│   ├── main.tsx            # Application entry point
+│   ├── index.css           # Global styles
+│   └── vite-env.d.ts       # Vite environment types
+├── public/                  # Static assets
+├── dist/                    # Production build output
+├── index.html              # HTML template
+├── vite.config.ts          # Vite configuration
+├── tsconfig.json           # TypeScript configuration
+├── tsconfig.node.json      # TypeScript config for Node
+├── amplify.yml             # AWS Amplify build spec
+├── package.json            # Dependencies and scripts
+├── .env.development        # Development environment vars
+├── .env.production         # Production environment vars
+└── .env.example            # Environment template
+```
+
+## Performance Considerations
+
+### Frontend Optimizations
+- Vite's fast HMR for development speed
+- Code splitting in production builds
+- Lazy loading of components where applicable
+- Efficient re-renders through React.memo where needed
+- Minimal bundle size (React + small dependency footprint)
+
+### State Management Efficiency
+- Local state management avoids Redux overhead
+- useEffect dependency arrays optimized to prevent unnecessary re-renders
+- Session storage separate from persistent storage to reduce API calls
+
+### API Request Optimization
+- Preferences only sent to backend on search
+- User profile fetched once on login
+- Like/dislike actions are fire-and-forget
+- Backend connection checked on interval, not per-request
+
+## Browser Compatibility
+
+Built with modern browsers in mind:
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+
+Relies on:
+- ES2020 JavaScript features
+- Fetch API
+- CSS Grid and Flexbox
+- CSS custom properties
+- Touch events API
+
+## Known Limitations
+
+1. **No offline support** - Requires active backend connection
+2. **Session-based auth** - No refresh token mechanism
+3. **Client-side only routing** - Refreshing deep links may break navigation
+4. **No pagination** - All search results loaded at once
+5. **Limited error recovery** - Some failed API calls require page refresh
+
+## Future Enhancement Possibilities
+
+- WebSocket connection for real-time updates
+- Progressive Web App (PWA) capabilities
+- Advanced filtering and sorting in liked movies view
+- Movie detail modal with extended information
+- User-to-user movie recommendations
+- Social features (sharing, comments)
+- Watchlist functionality separate from likes
+- Export/import preference configurations
+- Analytics dashboard
+- Email notifications for new recommendations
+
+## Development Notes
+
+### TypeScript Configuration
+The project uses strict TypeScript settings:
+- `strict: true` - All strict type-checking options enabled
+- `noUnusedLocals: true` - Error on unused variables
+- `noUnusedParameters: true` - Error on unused function parameters
+- `noFallthroughCasesInSwitch: true` - Prevent switch statement bugs
+
+### Vite Environment Variables
+Only variables prefixed with `VITE_` are exposed to client code. This prevents accidental exposure of sensitive backend configuration.
+
+### ESLint Rules
+- React hooks rules enforced
+- TypeScript ESLint integration
+- Maximum 0 warnings allowed in build
+- React refresh plugin for HMR
+
+## License
+
+This is a student project for educational purposes.
