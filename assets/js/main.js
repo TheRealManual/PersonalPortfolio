@@ -43,6 +43,29 @@ if (toggleBtn && hiddenExperiences.length) {
     });
 }
 
+// Project toggle functionality
+const toggleProjectsBtn = document.getElementById('toggle-projects');
+const hiddenProjects = document.querySelectorAll('.project-hidden');
+
+if (toggleProjectsBtn && hiddenProjects.length) {
+    let projectsExpanded = false;
+
+    toggleProjectsBtn.addEventListener('click', () => {
+        projectsExpanded = !projectsExpanded;
+        hiddenProjects.forEach((proj) => {
+            proj.classList.toggle('visible', projectsExpanded);
+        });
+        toggleProjectsBtn.textContent = projectsExpanded ? 'Show Less Projects' : 'Show More Projects';
+
+        // Scroll to button smoothly when collapsing
+        if (!projectsExpanded) {
+            setTimeout(() => {
+                toggleProjectsBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 200);
+        }
+    });
+}
+
 const repoGrid = document.getElementById('repo-grid');
 
 if (repoGrid) {

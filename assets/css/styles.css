@@ -440,12 +440,15 @@ section h2 {
     }
 }
 
-.experience-hidden {
+
+.experience-hidden,
+.project-hidden {
     display: none;
     opacity: 0;
 }
 
-.experience-hidden.visible {
+.experience-hidden.visible,
+.project-hidden.visible {
     display: block;
     animation: fadeInSlideUp 0.4s ease-out forwards;
 }

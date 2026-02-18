@@ -238,22 +238,42 @@
                     <h2>Featured Projects</h2>
                 </div>
                 <div class="project-grid">
+                    <!-- 1st: OneNote Whiteboard Scanner -->
                     <article class="project-card">
-                        <div class="project-image" style="background-image: url('assets/project-Images/StudyHub.png');"></div>
+                        <div class="project-image" style="background-image: url('assets/project-Images/OneNoteWhiteboardScanner.png');"></div>
                         <div class="project-content">
-                            <h3>Study Hub</h3>
-                            <p>Static study platform that transforms JSON files into interactive learning experiences with notes, flashcards, quizzes, games, and integrated PDF viewing—no backend required.</p>
+                            <h3>OneNote Whiteboard Scanner</h3>
+                            <p>Windows desktop application using computer vision and AI to digitize whiteboard content, outputting clean vector graphics with direct OneNote integration via Microsoft Graph API.</p>
                             <div class="project-tech">
-                                <span>HTML/CSS/JS</span>
-                                <span>Static Site</span>
-                                <span>AWS Amplify</span>
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>React</span>
+                                <span>Electron</span>
                             </div>
                             <div class="project-actions">
-                                <a href="https://collegestudyhub.com" target="_blank" rel="noopener noreferrer" class="button primary">View Live Site →</a>
-                                <a href="https://github.com/TheRealManual/Study-Hub" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository</a>
+                                <a href="https://github.com/TheRealManual/OneNote-Whiteboard-Scanner" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository →</a>
                             </div>
                         </div>
                     </article>
+                    <!-- 2nd: AI Chess Model -->
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('assets/project-Images/AIChessModel.png');"></div>
+                        <div class="project-content">
+                            <h3>AI Chess Model</h3>
+                            <p>AlphaZero-inspired chess engine using a ResNet neural network and Monte Carlo Tree Search, pre-trained on millions of Lichess games then refined through self-play reinforcement learning. Runs as a lightweight REST API with ONNX inference on CPU.</p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>PyTorch</span>
+                                <span>ONNX</span>
+                                <span>FastAPI</span>
+                                <span>MCTS</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/TheRealManual/AI-Chess-Model" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository →</a>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- 3rd: SceneIt -->
                     <article class="project-card">
                         <div class="project-image" style="background-image: url('assets/project-Images/SceneIt.png');"></div>
                         <div class="project-content">
@@ -271,22 +291,28 @@
                             </div>
                         </div>
                     </article>
-                    <article class="project-card">
-                        <div class="project-image" style="background-image: url('assets/project-Images/OneNoteWhiteboardScanner.png');"></div>
-                        <div class="project-content">
-                            <h3>OneNote Whiteboard Scanner</h3>
-                            <p>Windows desktop application using computer vision and AI to digitize whiteboard content, outputting clean vector graphics with direct OneNote integration via Microsoft Graph API.</p>
-                            <div class="project-tech">
-                                <span>Python</span>
-                                <span>OpenCV</span>
-                                <span>React</span>
-                                <span>Electron</span>
+                    <!-- Hidden projects (dropdown) -->
+                    <div class="project-hidden experience-hidden">
+                        <article class="project-card">
+                            <div class="project-image" style="background-image: url('assets/project-Images/StudyHub.png');"></div>
+                            <div class="project-content">
+                                <h3>Study Hub</h3>
+                                <p>Static study platform that transforms JSON files into interactive learning experiences with notes, flashcards, quizzes, games, and integrated PDF viewing—no backend required.</p>
+                                <div class="project-tech">
+                                    <span>HTML/CSS/JS</span>
+                                    <span>Static Site</span>
+                                    <span>AWS Amplify</span>
+                                </div>
+                                <div class="project-actions">
+                                    <a href="https://collegestudyhub.com" target="_blank" rel="noopener noreferrer" class="button primary">View Live Site →</a>
+                                    <a href="https://github.com/TheRealManual/Study-Hub" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository</a>
+                                </div>
                             </div>
-                            <div class="project-actions">
-                                <a href="https://github.com/TheRealManual/OneNote-Whiteboard-Scanner" target="_blank" rel="noopener noreferrer" class="button secondary">View Repository →</a>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    </div>
+                </div>
+                <div class="experience-cta">
+                    <button class="button secondary" id="toggle-projects">Show More Projects</button>
                 </div>
             </div>
         </section>
